@@ -14,11 +14,10 @@ import java.lang.annotation.*;
  * @see javafx.EasyInitialization
  */
 
-@Target(ElementType.CONSTRUCTOR)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Load
+public @interface LoadView
 {
-    String value() default "";
     String path() default "";
 }

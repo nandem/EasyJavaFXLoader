@@ -1,6 +1,6 @@
 package javafx;
 
-import javafx.annotation.Load;
+import javafx.annotation.LoadView;
 import javafx.annotation.MouseClicked;
 import javafx.scene.control.Control;
 
@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 import static javafx.utils.CommonUtil.checkNotNull;
 
 /**
- * FXML注解初始化类，通过继承本接口的实现类可以轻松地使用注解 {@link javafx.annotation.Load}初始化界面而不需要写冗长的初始化代码
+ * FXML注解初始化类，通过继承本接口的实现类可以轻松地使用注解 {@link javafx.annotation.LoadView}初始化界面而不需要写冗长的初始化代码
  *
  * 注意：
  * <ol>
@@ -22,7 +22,7 @@ import static javafx.utils.CommonUtil.checkNotNull;
  * </ol>
  *
  * @author Nandem on 2017/3/13.
- * @see javafx.annotation.Load
+ * @see javafx.annotation.LoadView
  */
 public interface EasyInitialization
 {
@@ -109,20 +109,32 @@ public interface EasyInitialization
     {
         Class clazz = this.getClass();
 
-        Constructor[] constructors = clazz.getConstructors();
-
-        for(Constructor c : constructors)
+        try
         {
-            try
-            {
-                Annotation uiAnnotation = checkNotNull(c.getAnnotation(Load.class));
-                String uiPath = ((Load) uiAnnotation).value();
-                LoadUIUtil.load(uiPath, this);
-            }
-            catch(Exception e)
-            {
-                //如果没有Load注解，什么都不做，他可能自己去加载
-            }
+            Annotation uiAnnotation = checkNotNull(clazz.getAnnotation(LoadView.class));
+            String uiPath = ((LoadView) uiAnnotation).path();
+            LoadUIUtil.load(uiPath, this);
         }
+        catch(Exception e)
+        {
+            //如果没有Load注解，什么都不做，他可能自己去加载
+        }
+
+//        Constructor[] constructors = clazz.getConstructors();
+//
+//        for(Constructor c : constructors)
+//        {
+//            try
+//            {
+//                clazz.getAnnotation(Load.class);
+//                Annotation uiAnnotation = checkNotNull(c.getAnnotation(Load.class));
+//                String uiPath = ((Load) uiAnnotation).value();
+//                LoadUIUtil.load(uiPath, this);
+//            }
+//            catch(Exception e)
+//            {
+//                //如果没有Load注解，什么都不做，他可能自己去加载
+//            }
+//        }
     }
 }

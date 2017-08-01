@@ -9,6 +9,8 @@
             xmlns:fx="http://javafx.com/fxml">
 
     <Button
+            prefWidth="150"
+            prefHeight="40"
             id="test"
             fx:id="test"
             text="测试" />
