@@ -11,5 +11,6 @@ public abstract class EasyGridPane extends GridPane implements EasyInitializatio
     {
         loadUI();
         initEvent();
+        initialize();
     }
 }

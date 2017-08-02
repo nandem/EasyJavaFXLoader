@@ -3,6 +3,7 @@ package javafx;
 import javafx.annotation.LoadView;
 import javafx.annotation.MouseClicked;
 import javafx.scene.control.Control;
+import javafx.scene.layout.Pane;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -136,5 +137,24 @@ public interface EasyInitialization
 //                //如果没有Load注解，什么都不做，他可能自己去加载
 //            }
 //        }
+    }
+
+    default void initialize()
+    {
+
+    }
+
+    default void setWidth(int width)
+    {
+        ((Pane) this).setPrefWidth(width);
+        ((Pane) this).setMinWidth(width);
+        ((Pane) this).setMaxWidth(width);
+    }
+
+    default void setHeight(int height)
+    {
+        ((Pane) this).setPrefHeight(height);
+        ((Pane) this).setMinHeight(height);
+        ((Pane) this).setMaxHeight(height);
     }
 }

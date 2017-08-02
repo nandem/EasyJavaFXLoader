@@ -11,5 +11,6 @@ public abstract class EasyPane extends Pane implements EasyInitialization
     {
         loadUI();
         initEvent();
+        initialize();
     }
 }

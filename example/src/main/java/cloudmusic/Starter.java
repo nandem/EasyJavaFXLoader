@@ -1,7 +1,10 @@
+package cloudmusic;
+
+import cloudmusic.view.MainView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.MainView;
+import javafx.stage.StageStyle;
 
 /**
  * @author Nandem on 2017/7/31.
@@ -12,10 +15,12 @@ public class Starter extends Application
     public void start(Stage primaryStage) throws Exception
     {
         MainView root = new MainView();
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root);
 
         primaryStage.setTitle("是不是要添加一个标题栏配置的功能？");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
+
         primaryStage.show();
     }
 

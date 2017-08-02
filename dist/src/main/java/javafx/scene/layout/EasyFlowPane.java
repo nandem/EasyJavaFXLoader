@@ -11,5 +11,6 @@ public abstract class EasyFlowPane extends FlowPane implements EasyInitializatio
     {
         loadUI();
         initEvent();
+        initialize();
     }
 }
