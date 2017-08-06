@@ -1,12 +1,11 @@
 package javafx;
 
-import javafx.annotation.LoadView;
+import javafx.annotation.Load;
 import javafx.annotation.MouseClicked;
 import javafx.scene.control.Control;
 import javafx.scene.layout.Pane;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,7 +13,7 @@ import java.lang.reflect.Method;
 import static javafx.utils.CommonUtil.checkNotNull;
 
 /**
- * FXML注解初始化类，通过继承本接口的实现类可以轻松地使用注解 {@link javafx.annotation.LoadView}初始化界面而不需要写冗长的初始化代码
+ * FXML注解初始化类，通过继承本接口的实现类可以轻松地使用注解 {@link Load}初始化界面而不需要写冗长的初始化代码
  *
  * 注意：
  * <ol>
@@ -23,7 +22,7 @@ import static javafx.utils.CommonUtil.checkNotNull;
  * </ol>
  *
  * @author Nandem on 2017/3/13.
- * @see javafx.annotation.LoadView
+ * @see Load
  */
 public interface EasyInitialization
 {
@@ -112,31 +111,34 @@ public interface EasyInitialization
 
         try
         {
-            Annotation uiAnnotation = checkNotNull(clazz.getAnnotation(LoadView.class));
-            String uiPath = ((LoadView) uiAnnotation).path();
+            Annotation uiAnnotation = checkNotNull(clazz.getAnnotation(Load.class), "请指定界面文件路径");
+            String uiPath = ((Load) uiAnnotation).view();
+            String cssPath = ((Load) uiAnnotation).css();
+
             LoadUIUtil.load(uiPath, this);
+
+            if(!cssPath.equals(""))
+            {
+                loadCss(cssPath);
+            }
         }
         catch(Exception e)
         {
             //如果没有Load注解，什么都不做，他可能自己去加载
         }
+    }
 
-//        Constructor[] constructors = clazz.getConstructors();
-//
-//        for(Constructor c : constructors)
-//        {
-//            try
-//            {
-//                clazz.getAnnotation(Load.class);
-//                Annotation uiAnnotation = checkNotNull(c.getAnnotation(Load.class));
-//                String uiPath = ((Load) uiAnnotation).value();
-//                LoadUIUtil.load(uiPath, this);
-//            }
-//            catch(Exception e)
-//            {
-//                //如果没有Load注解，什么都不做，他可能自己去加载
-//            }
-//        }
+    default void loadCss(String path)
+    {
+        ((Pane) this).getStylesheets().add(getClass().getResource(path).toExternalForm());
+
+    }
+
+    default void beforeInitialize()
+    {
+        loadUI();
+        initEvent();
+        initialize();
     }
 
     default void initialize()

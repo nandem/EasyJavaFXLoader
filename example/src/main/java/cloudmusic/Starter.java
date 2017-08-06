@@ -14,7 +14,7 @@ public class Starter extends Application
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        MainView root = new MainView();
+        MainView root = new MainView(primaryStage);
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("是不是要添加一个标题栏配置的功能？");

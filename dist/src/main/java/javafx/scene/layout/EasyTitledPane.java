@@ -10,8 +10,6 @@ public abstract class EasyTitledPane extends TitledPane implements EasyInitializ
 {
     protected EasyTitledPane()
     {
-        loadUI();
-        initEvent();
-        initialize();
+        beforeInitialize();
     }
 }

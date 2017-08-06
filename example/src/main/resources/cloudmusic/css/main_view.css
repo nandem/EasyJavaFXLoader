@@ -1,0 +1,18 @@
+#topPaneContainer
+{
+    -fx-background-color: linear-gradient(to right, #710808 0%, #B62424 50%, #710808 100%);
+}
+#topPane
+{
+    -fx-background-color: #212124;
+}
+
+#topPane Button
+{
+    -fx-background-color: transparent;
+    -fx-alignment: baseline-left;
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 1.5em;
+
+}

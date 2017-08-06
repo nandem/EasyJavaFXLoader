@@ -17,7 +17,8 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface LoadView
+public @interface Load
 {
-    String path() default "";
+    String view() default "";
+    String css() default "";
 }

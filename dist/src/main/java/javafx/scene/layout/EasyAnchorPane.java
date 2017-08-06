@@ -9,8 +9,6 @@ public abstract class EasyAnchorPane extends AnchorPane implements EasyInitializ
 {
     protected EasyAnchorPane()
     {
-        loadUI();
-        initEvent();
-        initialize();
+        beforeInitialize();
     }
 }

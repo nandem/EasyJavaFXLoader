@@ -9,8 +9,6 @@ public abstract class EasyBorderPane extends BorderPane implements EasyInitializ
 {
     protected EasyBorderPane()
     {
-        loadUI();
-        initEvent();
-        initialize();
+        beforeInitialize();
     }
 }
