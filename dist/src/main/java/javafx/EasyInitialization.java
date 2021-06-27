@@ -11,6 +11,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 import static javafx.utils.CommonUtil.checkNotNull;
 
@@ -172,13 +173,13 @@ public interface EasyInitialization
      */
     default void loadUI()
     {
-        Class clazz = this.getClass();
+        Class<? extends EasyInitialization> clazz = this.getClass();
 
         try
         {
-            Annotation uiAnnotation = checkNotNull(clazz.getAnnotation(Load.class), "请指定界面文件路径");
-            String uiPath = ((Load) uiAnnotation).view();
-            String cssPath = ((Load) uiAnnotation).css();
+            Load uiAnnotation = checkNotNull(clazz.getAnnotation(Load.class), "请指定界面文件路径");
+            String uiPath = uiAnnotation.view();
+            String cssPath = uiAnnotation.css();
 
             LoadUIUtil.load(uiPath, this);
 
@@ -195,7 +196,7 @@ public interface EasyInitialization
 
     default void loadCss(String path)
     {
-        ((Pane) this).getStylesheets().add(getClass().getResource(path).toExternalForm());
+        ((Pane) this).getStylesheets().add(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
     }
 
     default void beforeInitialize()

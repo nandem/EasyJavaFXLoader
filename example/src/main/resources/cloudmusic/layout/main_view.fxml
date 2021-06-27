@@ -3,47 +3,42 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.web.WebView?>
 <fx:root type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml" prefWidth="1022" prefHeight="670">
 
-    <children>
-        <Pane
-                id="topPaneContainer"
-                fx:id="topPaneContainer"
-                prefWidth="1022"
-                prefHeight="50">
-            <children>
-                <BorderPane
-                        id="topPane"
-                        fx:id="topPane"
-                        prefWidth="1022"
-                        prefHeight="48">
-                    <left>
-                        <FlowPane>
-                            <children>
-                                <Button
-                                        prefWidth="195"
-                                        prefHeight="48"
-                                        text="网易云音乐"/>
-                            </children>
-                        </FlowPane>
-                    </left>
-                    <right>
-                        <FlowPane
-                                alignment="CENTER_RIGHT">
-                            <children>
-                                <Button id="min" fx:id="min" text="-"/>
-                                <Button id="max" fx:id="max" text="□"/>
-                                <Button id="close" fx:id="close" text="×"/>
-                            </children>
-                            <BorderPane.margin>
-                                <Insets right="8.0" />
-                            </BorderPane.margin>
-                        </FlowPane>
-                    </right>
-                </BorderPane>
-            </children>
-        </Pane>
-    </children>
-
+  <Pane
+    id="topPaneContainer"
+    fx:id="topPaneContainer"
+    prefWidth="1022"
+    prefHeight="50">
+    <BorderPane
+      id="topPane"
+      fx:id="topPane"
+      prefWidth="1022"
+      prefHeight="48">
+      <left>
+        <FlowPane>
+          <Button
+            prefWidth="195"
+            prefHeight="48"
+            text="网易云音乐"/>
+        </FlowPane>
+      </left>
+      <right>
+        <FlowPane
+          alignment="CENTER_RIGHT">
+          <BorderPane.margin>
+            <Insets right="8.0"/>
+          </BorderPane.margin>
+          <Button id="min" fx:id="min" text="-"/>
+          <Button id="max" fx:id="max" text="□"/>
+          <Button id="close" fx:id="close" text="×"/>
+        </FlowPane>
+      </right>
+    </BorderPane>
+  </Pane>
+  <Pane layoutY="50">
+    <WebView fx:id="webView" id="webView" prefWidth="1022" prefHeight="620"/>
+  </Pane>
 </fx:root>
